@@ -13,7 +13,7 @@ SECRET_KEY = '5f@6&q)1%nl-n0wfq%bki2g!2_k%rkewcai60^c!$yq@6_#e=&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['demo-letsgou.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -127,3 +127,7 @@ MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL = 'home'
 
 LOGOUT_REDIRECT_URL = 'home'
+
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
