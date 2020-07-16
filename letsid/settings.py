@@ -68,12 +68,11 @@ WSGI_APPLICATION = 'letsid.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-SECRET_KEY = config('890()_{":>?":{278u2072huosdh8278awuhybweoff83197rriuqe')
-DEBUG = config('DEBUG', default=False, cast=bool)
 DATABASES = {
-    'default': dj_database_url.config(
-        default=config('postgres://amdfnibynuxsoh:80a7ff2fa87ce0598fe99d17d4da3c671a6aa0129c6bb053f6a0298ec22c7fee@ec2-34-239-241-25.compute-1.amazonaws.com:5432/d7to1v3b3vdbf')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
 
 
