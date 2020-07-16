@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block Title %}
+	{{webname}}-{{judul}}
+{% endblock Title %}
+
+{% block contents %}
+
+
+<div class="desktop">
+    <h1 id="judul">{{judul}}</h1>
+    {% if user.is_authenticated %}
+      Hi {{ user.username }}!
+      <div>
+        <h1>{{content}}</h1>
+      </div>
+
+    {% else %}
+      <p>You are not logged in</p>
+      <a href="{% url 'login' %}" class="send-btn">login</a>
+    {% endif %}
+</div>
+
+<div class="mobile">
+  <div class="header">
+    
+    {% if user.is_authenticated %}
+    <div class="topbar">
+      <a href="{% url 'berita' %}" class="nv-btn" id="nv-btn-slc">&nbsp;&nbsp;Berita&nbsp;&nbsp;</a>
+      <a href="{% url 'home' %}" class="nv-btn">Beranda</a>
+      <a href="{% url 'kultur' %}" class="nv-btn">Kultur</a>
+    </div>
+
+    <div class="botbar">
+      <a href="">Guide</a>
+      <a href="">Activity</a>
+      <a href="">&nbsp;&nbsp;Post&nbsp;&nbsp;</a>
+      <a href="">Wishlist</a>
+      <a href="">Profile</a>
+    </div>
+
+    <div class="home">
+
+      <form>
+        <input type="text" id="beritasearch" placeholder="&#x1F50E; Cari...">
+      </form>
+
+      <p id="hasilpencarianbrt">Hasil pencarian</p>
+
+      <div class="catgbrt">
+        <a href="" id="catghmhrfslc">Semua</a>
+        <a href="" id="catghmhrf">Tarian</a>
+        <a href="" id="catghmhrf">Teater</a>
+        <a href="" id="catghmhrf">Kuliner</a>
+        <a href="" id="catghmhrf">Wisata</a>
+        <a href="" id="catghmhrf">Alat musik</a>
+        <a href="" id="catghmhrf">Lagu</a>
+        <a href="" id="catghmhrf">Kerajinan</a>
+      </div>
+
+      {% for posts in post %}
+      <div class="post" id="post">
+        <a href="{{posts.slug}}" id="post-link">
+          <img id="img-post" src="{% static 'media/' %}{{posts.media}}">
+          <p id="lk-p">{{posts.judul}}</p>
+        </a>
+          
+      </div>
+      {% endfor %}
+    </div>
+
+    {% else %}
+    <h1 id="judul">{{judul}}</h1>
+    <div class="not-logged">
+      <p style="margin-bottom: 10px;">You are not logged in</p>
+      <a href="{% url 'login' %}" id="register" class="send-btn">login</a>
+      <a href="register" id="register" class="send-btn">Join us</a>
+    </div>
+    <div class="foot">
+      <p>.demo created by <i class='fab fa-github' style="margin-right: 5px; margin-left: 10px;"></i>devfdL</p>
+    </div>
+    {% endif %}
+</div>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<script src="{% static 'js/index.js' %}"></script>
+
+{% endblock contents %}
